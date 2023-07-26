@@ -15,9 +15,10 @@
   self.initialProps = @{};
 
   // Set the splash screen to show by default.
-  [RNSplashScreen show]; 
-
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  [super application:application didFinishLaunchingWithOptions:launchOptions];
+  [RNSplashScreen show];
+  
+  return YES;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
