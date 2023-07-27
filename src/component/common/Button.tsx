@@ -1,25 +1,30 @@
 import React from 'react';
-import {Button as RNButton, ButtonProps, View, StyleSheet} from 'react-native';
+import {StyleSheet, Text, TouchableHighlight} from 'react-native';
 import {colors} from '../../utils/colors';
 
-export const Button = (
-  props: ButtonProps & {variant?: 'primary' | 'secondary'},
-) => {
+export const Button = (props: {
+  variant?: 'primary' | 'secondary';
+  title: string;
+  onPress: () => void;
+}) => {
   return (
-    <View
+    <TouchableHighlight
       style={{
         ...styles.container,
         ...buttonVariant[props.variant ? props.variant : 'primary'],
-      }}>
-      <RNButton
-        color={
-          props.variant
+      }}
+      underlayColor="#fff"
+      onPress={props.onPress}>
+      <Text
+        style={{
+          ...styles.buttonStyle,
+          color: props.variant
             ? buttonVariant[props.variant].color
-            : buttonVariant.primary.color
-        }
-        {...props}
-      />
-    </View>
+            : buttonVariant.primary.color,
+        }}>
+        {props.title}
+      </Text>
+    </TouchableHighlight>
   );
 };
 
@@ -28,6 +33,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     padding: 8,
     borderRadius: 16,
+  },
+  buttonStyle: {
+    height: 30,
+    textAlign: 'center',
+    lineHeight: 30,
   },
 });
 

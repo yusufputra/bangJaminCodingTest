@@ -146,9 +146,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
   },
   dotContainerStyle: {
-    top: 30,
+    top: Dimensions.get('screen').height > 700 ? 30 : 10,
   },
   buttonContainer: {
-    top: 80,
+    top: Dimensions.get('screen').height > 700 ? 80 : 30,
   },
 });
