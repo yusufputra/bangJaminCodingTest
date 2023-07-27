@@ -119,10 +119,10 @@ export const Home = ({
         <View style={styles.buttonContainer}>
           <Button
             title="Log In"
-            color={colors.orange.primary}
             onPress={() => {
               navigation.navigate('login');
             }}
+            variant="secondary"
           />
         </View>
       </View>
