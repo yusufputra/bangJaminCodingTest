@@ -10,12 +10,14 @@ import {colors} from '../utils/colors';
 
 const {StatusBarManager} = NativeModules;
 
-type MyStatusBarProps = {
+export type MyStatusBarProps = {
   backgroundColor?: string;
+  barStyle?: 'light-content' | 'dark-content';
 };
 
 export const MyStatusBar = ({
   backgroundColor = colors.orange.primary,
+  barStyle = 'light-content',
 }: MyStatusBarProps) => {
   const [statusBarHeight, setStatusBarHeight] = useState(0);
 
@@ -26,7 +28,7 @@ export const MyStatusBar = ({
   }
   return (
     <>
-      <StatusBar barStyle={'light-content'} backgroundColor={backgroundColor} />
+      <StatusBar barStyle={barStyle} backgroundColor={backgroundColor} />
       <View
         style={{
           ...style.appBar,

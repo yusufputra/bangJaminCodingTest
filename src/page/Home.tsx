@@ -5,7 +5,6 @@ import {
   FlatList,
   Image,
   ImageSourcePropType,
-  SafeAreaView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -15,6 +14,7 @@ import {ExpandingDot} from 'react-native-animated-pagination-dots';
 import {Button} from '../component/common/Button';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
+import {LayoutPage} from '../component/LayoutPage';
 
 type CarouselData = {
   imageUrl: ImageSourcePropType;
@@ -70,7 +70,7 @@ export const Home = ({
   }, []);
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <LayoutPage style={backgroundStyle}>
       <View style={{...backgroundStyle, ...styles.container}}>
         <View>
           <FlatList
@@ -126,7 +126,7 @@ export const Home = ({
           />
         </View>
       </View>
-    </SafeAreaView>
+    </LayoutPage>
   );
 };
 

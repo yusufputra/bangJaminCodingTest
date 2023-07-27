@@ -30,7 +30,7 @@ export const Button = (props: {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 30,
+    marginHorizontal: 16,
     padding: 8,
     borderRadius: 16,
   },
