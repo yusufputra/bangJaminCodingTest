@@ -11,7 +11,6 @@ import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from './src/page/Home';
-import {MyStatusBar} from './src/component/MyStatusBar';
 import {Login} from './src/page/Login';
 
 export type RootStackParamList = {
@@ -28,7 +27,6 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
-      <MyStatusBar />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="home" component={Home} />
         <Stack.Screen name="login" component={Login} />
