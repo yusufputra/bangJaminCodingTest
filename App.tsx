@@ -6,33 +6,32 @@
  */
 
 import React, {useEffect} from 'react';
-import {StatusBar, useColorScheme} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from './src/page/Home';
+import {MyStatusBar} from './src/component/MyStatusBar';
+import {Login} from './src/page/Login';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  home: undefined;
+  login: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
   return (
     <NavigationContainer>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
+      <MyStatusBar />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );
