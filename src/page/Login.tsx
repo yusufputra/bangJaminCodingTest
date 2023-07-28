@@ -35,7 +35,6 @@ export const Login = () => {
         <InputText
           placeholder="tony@bangjamin.com"
           onChangeText={e => {
-            console.log(e.nativeEvent.text);
             setEmail(e.nativeEvent.text);
           }}
           value={email}
