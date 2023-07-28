@@ -11,6 +11,7 @@ import {Button} from '../component/common/Button';
 
 export const Pin = ({
   route,
+  navigation,
 }: NativeStackScreenProps<RootStackParamList, 'pin'>) => {
   const {email} = route.params;
   const [pin, setPin] = useState('');
@@ -34,7 +35,11 @@ export const Pin = ({
           <Button
             title="Continue"
             variant="primary"
-            onPress={() => console.log('Continue', pin)}
+            onPress={() => {
+              if (pin.length === 6) {
+                navigation.navigate('main');
+              }
+            }}
           />
         </View>
       </View>
