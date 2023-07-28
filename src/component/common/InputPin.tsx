@@ -1,5 +1,6 @@
 import React, {useState, createRef, FunctionComponent} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
+import {colors} from '../../utils/colors';
 
 interface InputPinProps {
   handleCompletePin: (pin: string) => void;
@@ -7,6 +8,7 @@ interface InputPinProps {
 
 const InputPin: FunctionComponent<InputPinProps> = ({handleCompletePin}) => {
   const [pin, setPin] = useState<string[]>(Array(6).fill(''));
+  const [focusedInputIndex, setFocusedInputIndex] = useState<number | null>();
   const pinInputRefs = Array(6)
     .fill(0)
     .map(() => createRef<TextInput>());
@@ -38,12 +40,16 @@ const InputPin: FunctionComponent<InputPinProps> = ({handleCompletePin}) => {
         <TextInput
           key={`pin-input-${index}`}
           ref={pinInputRefs[index]}
-          style={styles.input}
+          style={[
+            styles.input,
+            index === focusedInputIndex ? styles.focused : {},
+          ]}
           keyboardType="numeric"
           secureTextEntry
           value={digit}
           maxLength={1}
           onChangeText={digital => handlePinChange(digital, index)}
+          onFocus={() => setFocusedInputIndex(index)}
         />
       ))}
     </View>
@@ -68,5 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     borderRadius: 8,
     color: 'black',
+  },
+  focused: {
+    borderColor: colors.orange.primary,
   },
 });
