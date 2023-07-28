@@ -44,6 +44,7 @@ export const Login = ({
           value={email}
         />
         <Button
+          disabled={email.length < 1}
           title="Continue"
           variant="primary"
           onPress={() => navigation.navigate('pin', {email})}

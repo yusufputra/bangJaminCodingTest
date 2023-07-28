@@ -1,29 +1,44 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableHighlight} from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import {colors} from '../../utils/colors';
 
 export const Button = (props: {
   variant?: 'primary' | 'secondary';
   title: string;
   onPress: () => void;
+  disabled?: boolean;
+  isLoading?: boolean;
 }) => {
   return (
     <TouchableHighlight
+      disabled={props.disabled}
       style={{
         ...styles.container,
         ...buttonVariant[props.variant ? props.variant : 'primary'],
       }}
       underlayColor="#fff"
       onPress={props.onPress}>
-      <Text
-        style={{
-          ...styles.buttonStyle,
-          color: props.variant
-            ? buttonVariant[props.variant].color
-            : buttonVariant.primary.color,
-        }}>
-        {props.title}
-      </Text>
+      <View style={styles.content}>
+        {props.isLoading ? (
+          <ActivityIndicator color={colors.white} />
+        ) : (
+          <Text
+            style={{
+              ...styles.buttonStyle,
+              color: props.variant
+                ? buttonVariant[props.variant].color
+                : buttonVariant.primary.color,
+            }}>
+            {props.title}
+          </Text>
+        )}
+      </View>
     </TouchableHighlight>
   );
 };
@@ -38,6 +53,11 @@ const styles = StyleSheet.create({
     height: 30,
     textAlign: 'center',
     lineHeight: 30,
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 30,
   },
 });
 

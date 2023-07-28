@@ -13,7 +13,6 @@ export const Nasabah = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, 'nasabah'>) => {
   const customer = useGetCustomer();
-  console.log(customer.data?.pages.map(item => item.data));
   return (
     <LayoutPage
       statusBarStyle={{

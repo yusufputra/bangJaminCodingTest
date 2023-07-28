@@ -2,12 +2,13 @@
 import React, {useState} from 'react';
 import {LayoutPage} from '../component/LayoutPage';
 import {colors} from '../utils/colors';
-import {Image, StyleSheet, View} from 'react-native';
+import {Alert, Image, StyleSheet, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import {Section} from '../component/Section';
 import InputPin from '../component/common/InputPin';
 import {Button} from '../component/common/Button';
+import {useLogin} from '../domain/user/loginHooks';
 
 export const Pin = ({
   route,
@@ -15,6 +16,7 @@ export const Pin = ({
 }: NativeStackScreenProps<RootStackParamList, 'pin'>) => {
   const {email} = route.params;
   const [pin, setPin] = useState('');
+  const login = useLogin();
   return (
     <LayoutPage
       statusBarStyle={{
@@ -33,11 +35,24 @@ export const Pin = ({
           </Section>
           <InputPin handleCompletePin={e => setPin(e)} />
           <Button
+            isLoading={login.isLoading}
             title="Continue"
             variant="primary"
             onPress={() => {
               if (pin.length === 6) {
-                navigation.navigate('main');
+                login.mutate(
+                  {email, password: pin},
+                  {
+                    onSuccess: () => {
+                      navigation.navigate('main');
+                    },
+                    onError: () => {
+                      Alert.alert('Invalid PIN');
+                    },
+                  },
+                );
+              } else {
+                Alert.alert('Pin must be 6 digits');
               }
             }}
           />
