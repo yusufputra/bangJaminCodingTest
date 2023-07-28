@@ -20,6 +20,8 @@ export const InputText = (props: InputTextProps) => {
       placeholder={props.placeholder}
       value={props.value}
       onChange={props.onChangeText}
+      autoCapitalize="none"
+      placeholderTextColor={colors.grey[30]}
     />
   );
 };

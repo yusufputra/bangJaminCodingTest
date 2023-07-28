@@ -13,14 +13,18 @@ import {colors} from '../utils/colors';
 import {Heading} from '../component/common/Heading';
 import {Button} from '../component/common/Button';
 import {InputText} from '../component/common/InputText';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../App';
 
-export const Login = () => {
+export const Login = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList, 'login'>) => {
   const [email, setEmail] = useState('');
   return (
     <LayoutPage
       statusBarStyle={{...styles.layout, barStyle: 'dark-content'}}
       enableSafeArea={false}>
-      <View>
+      <View style={{backgroundColor: colors.white, height: '100%'}}>
         <Image
           source={require('../assets/image/login-header.png')}
           style={styles.image}
@@ -35,15 +39,14 @@ export const Login = () => {
         <InputText
           placeholder="tony@bangjamin.com"
           onChangeText={e => {
-            console.log(e.nativeEvent.text);
             setEmail(e.nativeEvent.text);
           }}
           value={email}
         />
         <Button
-          title="Contiinue"
+          title="Continue"
           variant="primary"
-          onPress={() => console.log('halo')}
+          onPress={() => navigation.navigate('pin', {email})}
         />
         <View style={{...styles.container, marginTop: 8}}>
           <Text style={{color: colors.black}}>

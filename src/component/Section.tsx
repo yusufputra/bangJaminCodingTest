@@ -4,16 +4,21 @@ import {colors} from '../utils/colors';
 
 type SectionProps = PropsWithChildren<{
   title: string;
+  textColor?: string;
 }>;
 
-export function Section({children, title}: SectionProps): JSX.Element {
+export function Section({
+  children,
+  title,
+  textColor,
+}: SectionProps): JSX.Element {
   return (
     <View style={styles.sectionContainer}>
       <Text
         style={[
           styles.sectionTitle,
           {
-            color: colors.white,
+            color: textColor || colors.white,
           },
         ]}>
         {title}
@@ -22,7 +27,7 @@ export function Section({children, title}: SectionProps): JSX.Element {
         style={[
           styles.sectionDescription,
           {
-            color: colors.white,
+            color: textColor || colors.white,
           },
         ]}>
         {children}
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
   sectionDescription: {
     marginTop: 8,
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '400',
     textAlign: 'center',
   },
 });
