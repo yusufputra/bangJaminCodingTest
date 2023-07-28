@@ -13,8 +13,12 @@ import {colors} from '../utils/colors';
 import {Heading} from '../component/common/Heading';
 import {Button} from '../component/common/Button';
 import {InputText} from '../component/common/InputText';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../App';
 
-export const Login = () => {
+export const Login = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList, 'login'>) => {
   const [email, setEmail] = useState('');
   return (
     <LayoutPage
@@ -40,9 +44,9 @@ export const Login = () => {
           value={email}
         />
         <Button
-          title="Contiinue"
+          title="Continue"
           variant="primary"
-          onPress={() => console.log('halo')}
+          onPress={() => navigation.navigate('pin', {email})}
         />
         <View style={{...styles.container, marginTop: 8}}>
           <Text style={{color: colors.black}}>

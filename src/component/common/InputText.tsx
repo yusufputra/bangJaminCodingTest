@@ -21,6 +21,7 @@ export const InputText = (props: InputTextProps) => {
       value={props.value}
       onChange={props.onChangeText}
       autoCapitalize="none"
+      placeholderTextColor={colors.grey[30]}
     />
   );
 };
