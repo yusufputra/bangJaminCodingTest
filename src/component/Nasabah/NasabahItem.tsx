@@ -3,12 +3,9 @@ import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {colors} from '../../utils/colors';
 import {DeviderHorizontal} from '../common/DeviderHorizontal';
+import {Customer} from '../../domain/customer/getCustomerHooks';
 
-type NasabahItemProps = {
-  imageUrl: string;
-  name: string;
-  email: string;
-};
+type NasabahItemProps = Customer;
 
 export const NasabahItem = (props: NasabahItemProps) => {
   return (
@@ -19,8 +16,12 @@ export const NasabahItem = (props: NasabahItemProps) => {
           flexDirection: 'row',
           alignItems: 'center',
           gap: 16,
+          paddingTop: 16,
         }}>
-        <Image source={{uri: props.imageUrl}} />
+        <Image
+          style={{height: 50, width: 50, borderRadius: 9999}}
+          source={{uri: props.avatar}}
+        />
         <View>
           <Text
             style={{
@@ -28,7 +29,7 @@ export const NasabahItem = (props: NasabahItemProps) => {
               fontWeight: '500',
               fontSize: 14,
             }}>
-            {props.name}
+            {`${props.first_name} ${props.last_name}`}
           </Text>
           <Text
             style={{

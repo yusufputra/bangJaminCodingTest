@@ -15,6 +15,7 @@ import {Login} from './src/page/Login';
 import {Pin} from './src/page/Pin';
 import {Main} from './src/page/Main';
 import {Nasabah} from './src/page/Nasabah';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
 export type RootStackParamList = {
   home: undefined;
@@ -27,6 +28,7 @@ export type RootStackParamList = {
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -35,13 +37,15 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="pin" component={Pin} />
-        <Stack.Screen name="main" component={Main} />
-        <Stack.Screen name="nasabah" component={Nasabah} />
-      </Stack.Navigator>
+      <QueryClientProvider client={queryClient}>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="home" component={Home} />
+          <Stack.Screen name="login" component={Login} />
+          <Stack.Screen name="pin" component={Pin} />
+          <Stack.Screen name="main" component={Main} />
+          <Stack.Screen name="nasabah" component={Nasabah} />
+        </Stack.Navigator>
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }
