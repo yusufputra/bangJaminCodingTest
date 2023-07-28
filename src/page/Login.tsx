@@ -20,7 +20,7 @@ export const Login = () => {
     <LayoutPage
       statusBarStyle={{...styles.layout, barStyle: 'dark-content'}}
       enableSafeArea={false}>
-      <View>
+      <View style={{backgroundColor: colors.white, height: '100%'}}>
         <Image
           source={require('../assets/image/login-header.png')}
           style={styles.image}
