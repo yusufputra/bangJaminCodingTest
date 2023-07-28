@@ -9,10 +9,9 @@ import {MainMenu} from '../component/Main/MainMenu';
 import {InviteFriend} from '../component/Main/InviteFriend';
 import {ProductContainer} from '../component/Main/ProductContainer';
 
-export const Main = ({}: NativeStackScreenProps<
-  RootStackParamList,
-  'main'
->) => {
+export const Main = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList, 'main'>) => {
   return (
     <LayoutPage
       statusBarStyle={{...styles.layout, barStyle: 'dark-content'}}
@@ -67,7 +66,7 @@ export const Main = ({}: NativeStackScreenProps<
                   {
                     icon: require('../assets/image/nasabah.png'),
                     label: 'Nasabah',
-                    onPress: () => console.log('pressed'),
+                    onPress: () => navigation.navigate('nasabah'),
                   },
                 ]}
               />

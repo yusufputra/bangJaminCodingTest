@@ -14,6 +14,7 @@ import {Home} from './src/page/Home';
 import {Login} from './src/page/Login';
 import {Pin} from './src/page/Pin';
 import {Main} from './src/page/Main';
+import {Nasabah} from './src/page/Nasabah';
 
 export type RootStackParamList = {
   home: undefined;
@@ -22,6 +23,7 @@ export type RootStackParamList = {
     email: string;
   };
   main: undefined;
+  nasabah: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,6 +40,7 @@ function App(): JSX.Element {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="pin" component={Pin} />
         <Stack.Screen name="main" component={Main} />
+        <Stack.Screen name="nasabah" component={Nasabah} />
       </Stack.Navigator>
     </NavigationContainer>
   );
