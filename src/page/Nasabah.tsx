@@ -2,7 +2,7 @@
 import React from 'react';
 import {LayoutPage} from '../component/LayoutPage';
 import {colors} from '../utils/colors';
-import {FlatList, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import {HeaderNavigation} from '../component/HeaderNavigation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
@@ -13,7 +13,6 @@ export const Nasabah = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, 'nasabah'>) => {
   const customer = useGetCustomer();
-  console.log(customer.data?.pages.map(item => item.data));
   return (
     <LayoutPage
       statusBarStyle={{
@@ -26,7 +25,16 @@ export const Nasabah = ({
         onBackPress={() => navigation.goBack()}
       />
       <View
-        style={{backgroundColor: colors.white, height: '100%', padding: 16}}>
+        style={{
+          backgroundColor: colors.white,
+          height: '100%',
+          padding: 16,
+          paddingTop: 0,
+        }}>
+        <View
+          style={{alignItems: 'center', justifyContent: 'center', height: 30}}>
+          {customer.isLoading && <ActivityIndicator color={colors.black} />}
+        </View>
         <FlatList
           style={{paddingBottom: 50}}
           data={customer.data?.pages.map(item => item.data).flat()}
